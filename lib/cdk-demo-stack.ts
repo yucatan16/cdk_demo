@@ -5,9 +5,11 @@ export class CdkDemoStack extends cdk.Stack {
   constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
+    const systemEnv = process.env.SYSTEM_ENV ? process.env.SYSTEM_ENV : 'dev';
+
     // The code that defines your stack goes here
     // CHANGE: We have created the vpc object from the Vpc class.
-    const vpc = new Vpc(this, 'MainVpc',{
+    const vpc = new Vpc(this, `${systemEnv}-MainVpc`,{
     
     // CHANGE: this is where we define how many AZs to use
     maxAzs: 2,
